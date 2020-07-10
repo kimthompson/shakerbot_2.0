@@ -1,0 +1,25 @@
+{
+  "name": "ShakerBot_2.0",
+  "version": "1.0.0",
+  "description": "New and 'improved' Discord bot for managing the Spice Rack FFXIV Free Company",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "dev": "node bundle.js"
+  },
+  "keywords": [
+    "discordjs",
+    "bot"
+  ],
+  "authors": [
+    "Yomi Hagane",
+    "Kaien Tsurugi"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0"
+  }
+}
