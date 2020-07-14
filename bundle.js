@@ -2,35 +2,41 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var dotenv = require('dotenv');
 var Discord = _interopDefault(require('discord.js'));
 
-var token = "NzMwOTUxMzE2MjA5NDAxODc2.XwfHoQ.1qsP655Mwces7TA_MjzeFbrTbdI";
-var prefix = "!";
-var config = {
-	token: token,
-	prefix: prefix
+const ping = (message) => {
+  message.channel.send('Pong!');
 };
+
+const blah = (message) => {
+  message.channel.send('Meh.');
+};
+
+const messageEvent = (client, message) => {
+  if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return
+
+  const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+
+  switch (command) {
+    case 'ping':
+      ping(message);
+      break
+    case 'blah':
+      blah(message);
+      break
+  }
+};
+
+dotenv.config();
+
+console.log('env', process.env.TOKEN);
 
 const client = new Discord.Client();
 
-client.on('ready', () => {
-  console.log('beep boop let\'s go');
-});
-
 client.on('message', (message) => {
-  if(!message.content.startsWith(config.prefix) || message.author.bot) return
-
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-
-  switch(command) {
-    case 'ping':
-      message.channel.send('Pong!');
-      break
-    case 'blah':
-      message.channel.send('Meh.');
-      break
-  }
+  messageEvent(client, message);
 });
 
-client.login(config.token);
+client.login(process.env.TOKEN);
