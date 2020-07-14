@@ -13,7 +13,7 @@ const blah = (message) => {
   message.channel.send('Meh.');
 };
 
-const messageEvent = (client, message) => {
+const message = (client, message) => {
   if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return
 
   const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
@@ -29,14 +29,24 @@ const messageEvent = (client, message) => {
   }
 };
 
-dotenv.config();
+const ready = (client) => {
+  // TODO: Change BOSSASSBITCH to CREATOR before release
+  let creator = client.users.cache.get(process.env.BOSSASSBITCH);
+  creator.send("I'm awake!").catch(console.error);
+  console.log("I'm awake!");
+  client.user.setActivity('FC chat', { type: 'LISTENING' });
+};
 
-console.log('env', process.env.TOKEN);
+dotenv.config();
 
 const client = new Discord.Client();
 
-client.on('message', (message) => {
-  messageEvent(client, message);
+client.on('ready', () => {
+  ready(client);
+});
+
+client.on('message', (message$1) => {
+  message(client, message$1);
 });
 
 client.login(process.env.TOKEN);

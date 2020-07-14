@@ -1,6 +1,6 @@
 import { ping, blah } from '../commands/index'
 
-const messageEvent = (client, message) => {
+const message = (client, message) => {
   if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return
 
   const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g)
@@ -16,4 +16,4 @@ const messageEvent = (client, message) => {
   }
 }
 
-export default messageEvent
+export default message

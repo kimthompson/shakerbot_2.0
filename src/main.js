@@ -1,10 +1,17 @@
 import { config } from 'dotenv'
 import Discord from 'discord.js'
-import { messageEvent } from './events/index'
+import {
+  message as messageEvent,
+  ready as readyEvent
+} from './events/index'
 
 config()
 
 const client = new Discord.Client()
+
+client.on('ready', () => {
+  readyEvent(client)
+})
 
 client.on('message', (message) => {
   messageEvent(client, message)
