@@ -9,7 +9,25 @@ const ready = (client) => {
   let creator = client.users.cache.get(process.env.BOSSASSBITCH);
   creator.send("I'm awake!").catch(console.error);
   console.log("I'm awake!");
+
   client.user.setActivity('FC chat', { type: 'LISTENING' });
+
+  // TODO: Start timers
+};
+
+const assignMainRole = (message) => {
+  message.channel.send('Main Role');
+  console.log('Shaker says, "Main Role"');
+};
+
+const checkRoles = (message) => {
+  let response = "Your roles are:\n";
+  message.member.roles._roles.map((role) => {
+    response += `* ${role.name}\n`;
+  });
+
+  message.channel.send(response);
+  console.log(`Shaker says, "${response}"`);
 };
 
 const ping = (message) => {
@@ -23,19 +41,26 @@ const blah = (message) => {
 };
 
 var prefix = "!";
+var mainCommands = [
+	"tankmain",
+	"healermain",
+	"dpsmain"
+];
 
 const message = (client, message) => {
-  console.log('prefix', prefix);
-  console.log('message', message.content);
-
-  console.log('message.content.startsWith("!")', message.content.startsWith(prefix));
-
   if (!message.content.startsWith(prefix) || message.author.bot) return
 
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
+  if (mainCommands.includes(command)) {
+    assignMainRole(message);
+  }
+
   switch (command) {
+    case 'roles': 
+      checkRoles(message);
+      break
     case 'ping':
       ping(message);
       break

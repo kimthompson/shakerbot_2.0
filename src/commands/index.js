@@ -1,4 +1,5 @@
+import assignMainRole from './assignMainRole'
+import checkRoles from './checkRoles'
 import ping from './ping'
-import blah from './blah'
 
-export { ping, blah }
+export { assignMainRole, checkRoles, ping }

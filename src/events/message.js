@@ -1,5 +1,5 @@
-import { ping, blah } from '../commands/index'
-import { prefix } from '../../config.json'
+import { assignMainRole, checkRoles, ping } from '../commands/index'
+import { prefix, mainCommands } from '../../config.json'
 
 const message = (client, message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return
@@ -7,12 +7,16 @@ const message = (client, message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
 
+  if (mainCommands.includes(command)) {
+    assignMainRole(message)
+  }
+
   switch (command) {
+    case 'roles': 
+      checkRoles(message)
+      break
     case 'ping':
       ping(message)
-      break
-    case 'blah':
-      blah(message)
       break
   }
 }

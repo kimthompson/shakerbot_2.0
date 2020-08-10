@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rollup --config rollup.config.js",
-    "dev": "node -r dotenv/config bundle.js"
+    "dev": "node -r dotenv/config bundle.js",
+    "debug": "node --inspect -r dotenv/config bundle.js"
   },
   "keywords": [
     "discordjs",

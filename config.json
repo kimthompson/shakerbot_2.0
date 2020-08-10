@@ -1,3 +1,38 @@
 {
-  "prefix": "!"
+  "prefix": "!",
+  "testChannel": "571461836592119809",
+  "botChannel": "576467003599224832",
+  "announcementsChannel": "571544903088078859",
+  "roles": {
+    "tank": "571447943673020416",
+    "healer": "571448509685825536",
+    "dps": "571449972340555776",
+    "tankmain": "571453467261009978",
+    "healermain": "571453596411887617",
+    "dpsmain": "571453677965934628",
+    "journal": "572123320904843276",
+    "cactpot": "572123648282984470",
+    "treasure": "572215317569339413",
+    "spoilers": "593576716899713034"
+  },
+  "basicCommands": [
+    "tank",
+    "healer",
+    "dps",
+    "treasure",
+    "journal",
+    "cactpot",
+    "tankmain",
+    "healermain",
+    "dpsmain",
+    "roles",
+    "sleep",
+    "spoilers",
+    "time"
+  ],
+  "mainCommands": [
+    "tankmain",
+    "healermain",
+    "dpsmain"
+  ]
 }
