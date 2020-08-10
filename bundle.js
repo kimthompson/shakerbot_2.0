@@ -2,7 +2,6 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var dotenv = require('dotenv');
 var Discord = _interopDefault(require('discord.js'));
 
 const ready = (client) => {
@@ -15,16 +14,25 @@ const ready = (client) => {
 
 const ping = (message) => {
   message.channel.send('Pong!');
+  console.log('Shaker says, "Pong!"');
 };
 
 const blah = (message) => {
   message.channel.send('Meh.');
+  console.log('Shaker says, "Meh."');
 };
 
-const message = (client, message) => {
-  if (!message.content.startsWith(process.env.PREFIX) || message.author.bot) return
+var prefix = "!";
 
-  const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
+const message = (client, message) => {
+  console.log('prefix', prefix);
+  console.log('message', message.content);
+
+  console.log('message.content.startsWith("!")', message.content.startsWith(prefix));
+
+  if (!message.content.startsWith(prefix) || message.author.bot) return
+
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
   switch (command) {
@@ -55,13 +63,9 @@ const warn = (info) => {
   console.log(`warn: ${info}`);
 };
 
-dotenv.config();
-
 const client = new Discord.Client();
 
-client.on('ready', () => {
-  ready(client);
-});
+client.on('ready', () => { ready(client); });
 
 client.on('message', (message$1) => {
   message(client, message$1);
@@ -87,4 +91,4 @@ client.on('warn', (info) => {
   warn(info);
 });
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN).catch((error) => console.error(error));

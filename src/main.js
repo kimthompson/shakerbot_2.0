@@ -1,4 +1,3 @@
-import { config } from 'dotenv'
 import Discord from 'discord.js'
 import {
   message as messageEvent,
@@ -9,13 +8,9 @@ import {
   warn as warnEvent
 } from './events/index'
 
-config()
-
 const client = new Discord.Client()
 
-client.on('ready', () => {
-  readyEvent(client)
-})
+client.on('ready', () => { readyEvent(client) })
 
 client.on('message', (message) => {
   messageEvent(client, message)
@@ -41,4 +36,4 @@ client.on('warn', (info) => {
   warnEvent(info)
 })
 
-client.login(process.env.TOKEN)
+client.login(process.env.TOKEN).catch((error) => console.error(error))
