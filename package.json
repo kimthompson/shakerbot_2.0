@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rollup --config rollup.config.js",
     "dev": "node -r dotenv/config bundle.js",
-    "debug": "node --inspect -r dotenv/config bundle.js"
+    "debug": "node --inspect -r dotenv/config bundle.js",
+    "start": "pm2 start bundle.js -i 1"
   },
   "keywords": [
     "discordjs",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
+    "pm2": "^4.4.0",
     "rollup": "^2.23.1"
   }
 }
