@@ -1,7 +1,7 @@
 const checkRoles = (message) => {
   let response = "Your roles are:\n"
   message.member.roles._roles.map((role) => {
-    response += `* ${role.name}\n`
+    response += `\n* ${role.name}`
   })
 
   message.channel.send(response)

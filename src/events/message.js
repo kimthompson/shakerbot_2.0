@@ -1,4 +1,4 @@
-import { assignMainRole, checkRoles, ping } from '../commands/index'
+import { checkRoles, checkTime, ping } from '../commands/index'
 import { prefix, mainCommands } from '../../config.json'
 
 const message = (client, message) => {
@@ -8,10 +8,13 @@ const message = (client, message) => {
   const command = args.shift().toLowerCase()
 
   if (mainCommands.includes(command)) {
-    assignMainRole(message)
+    assignMainRole(client, message, command)
   }
 
   switch (command) {
+    case 'time':
+      checkTime(message)
+      break
     case 'roles': 
       checkRoles(message)
       break

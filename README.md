@@ -20,26 +20,6 @@ The available roles to ping are:
 * Tank
 * Healer
 
-### Assigning Roles
-
-Once you're comfortable with a given role and above level 50, type the corresponding role command to assign it to yourself. You can be in more than one if you'd like! The following commands are valid:
-
-* `!tank`
-* `!healer`
-* `!dps`
-
-To remove yourself from a role, simply run that role's command again. In this respect, it kind of works like a toggle.
-
-### Main Roles
-
-Use the following commands to set your main role, which will color your name within this channel. Thes are purely cosmetic, and cannot be pinged like other roles.
-
-* `!tankmain`
-* `!healermain`
-* `!dpsmain`
-
-If you feel like switching to another main role, simply type in the one that you want, and Shaker will remove you from the old one.
-
 ### Reminders/Alerts
 
 We have also made a few roles to manage reminders and alerts for scheduled activities in-game. The following roles can also be pinged for organizing groups. Please note that these alerts send scheduled private messages at the listed times.
@@ -66,7 +46,15 @@ For running treasure maps, Aquapolis, Lost Canals:
 !treasure
 ```
 
-#### COMING SOON
+### Other commands
+
+If you want a printout of your active roles sent to you, use the following command:
+
+```
+!roles
+```
+
+## COMING SOON
 
 ```
 !hunt *creature*
@@ -76,10 +64,30 @@ For running treasure maps, Aquapolis, Lost Canals:
 !fate *fate name*
 ```
 
-### Other commands
+### Assigning Roles
 
-If you want a printout of your active roles sent to you, use the following command:
+Cannot reimplement these until we figure out how to make Shaker admin, or at least give him role assign authority. In order to do that, we need to set up TFA on his behalf. I don't want to even get into it right now, but here are the resources I was attempting to combine:
 
-```
-!roles
-```
+* https://discord.com/developers/docs/topics/oauth2#bots
+* https://discordjs.guide/popular-topics/permissions-extended.html#discord-s-permission-system
+* https://discord.js.org/#/docs/main/stable/class/GuildMemberRoleManager?scrollTo=remove
+* Our permissions integer for `ADMINISTRATOR` should be 8. Where I shove that integer, idek.
+
+Once you're comfortable with a given role and above level 50, type the corresponding role command to assign it to yourself. You can be in more than one if you'd like! The following commands are valid:
+
+* `!tank`
+* `!healer`
+* `!dps`
+
+To remove yourself from a role, simply run that role's command again. In this respect, it kind of works like a toggle.
+
+### Main Roles
+
+Use the following commands to set your main role, which will color your name within this channel. Thes are purely cosmetic, and cannot be pinged like other roles.
+
+* `!tankmain`
+* `!healermain`
+* `!dpsmain`
+
+If you feel like switching to another main role, simply type in the one that you want, and Shaker will remove you from the old one.
+

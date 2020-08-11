@@ -3,6 +3,7 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var Discord = _interopDefault(require('discord.js'));
+var dateFns = require('date-fns');
 
 const ready = (client) => {
   // TODO: Change BOSSASSBITCH to CREATOR before release
@@ -15,29 +16,27 @@ const ready = (client) => {
   // TODO: Start timers
 };
 
-const assignMainRole = (message) => {
-  message.channel.send('Main Role');
-  console.log('Shaker says, "Main Role"');
-};
-
 const checkRoles = (message) => {
   let response = "Your roles are:\n";
   message.member.roles._roles.map((role) => {
-    response += `* ${role.name}\n`;
+    response += `\n* ${role.name}`;
   });
 
   message.channel.send(response);
   console.log(`Shaker says, "${response}"`);
 };
 
+const checkTime = (message) => {
+  let now = new Date();
+  let msg = `It is now ${dateFns.format(now, "hh:mm a MM/dd/yyyy")}`;
+
+  message.channel.send(msg);
+  console.log(`Shaker says, ${msg}`);
+};
+
 const ping = (message) => {
   message.channel.send('Pong!');
   console.log('Shaker says, "Pong!"');
-};
-
-const blah = (message) => {
-  message.channel.send('Meh.');
-  console.log('Shaker says, "Meh."');
 };
 
 var prefix = "!";
@@ -54,18 +53,18 @@ const message = (client, message) => {
   const command = args.shift().toLowerCase();
 
   if (mainCommands.includes(command)) {
-    assignMainRole(message);
+    assignMainRole(client, message, command);
   }
 
   switch (command) {
+    case 'time':
+      checkTime(message);
+      break
     case 'roles': 
       checkRoles(message);
       break
     case 'ping':
       ping(message);
-      break
-    case 'blah':
-      blah(message);
       break
   }
 };
