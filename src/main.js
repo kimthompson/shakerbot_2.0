@@ -7,10 +7,14 @@ import {
   error as errorEvent,
   warn as warnEvent
 } from './events/index'
+import startTimers from './timers/startTimers'
 
 const client = new Discord.Client()
 
-client.on('ready', () => { readyEvent(client) })
+client.on('ready', () => {
+  readyEvent(client)
+  startTimers(client)
+})
 
 client.on('message', (message) => {
   messageEvent(client, message)

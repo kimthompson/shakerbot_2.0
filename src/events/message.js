@@ -1,5 +1,5 @@
 import { checkRoles, checkTime, ping } from '../commands/index'
-import { prefix, mainCommands } from '../../config.json'
+import { prefix } from '../../config.json'
 
 const message = (client, message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return
@@ -7,9 +7,10 @@ const message = (client, message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
 
-  if (mainCommands.includes(command)) {
-    assignMainRole(client, message, command)
-  }
+  // TODO: Reenable when assignMainRole is working
+  //if (mainCommands.includes(command)) {
+    //assignMainRole(client, message, command)
+  //}
 
   switch (command) {
     case 'time':

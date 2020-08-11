@@ -5,8 +5,6 @@ const ready = (client) => {
   console.log("I'm awake!")
 
   client.user.setActivity('FC chat', { type: 'LISTENING' })
-
-  // TODO: Start timers
 }
 
 export default ready
